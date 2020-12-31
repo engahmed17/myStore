@@ -1,0 +1,58 @@
+<br>
+<br>
+<div class="container">
+        <header class="uk-comment-header">
+            <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                    <img class="uk-comment-avatar" [src]="dataProfile.image" alt="">
+                </div>
+            </div>
+            <br>
+            <div class="uk-width-expand">
+              <p class="uk-comment-title uk-margin-remove">Name : <a class="uk-link-reset">{{dataProfile.flName}}</a></p>
+          </div>
+          <br>
+          <div class="uk-width-expand">
+            <p class="uk-comment-title uk-margin-remove">Age : <a class="uk-link-reset">{{dataProfile.age}}</a></p>
+            <br>
+        </div>
+        <div class="uk-width-expand">
+          <p class="uk-comment-title uk-margin-remove">Address : <a class="uk-link-reset">{{dataProfile.address}}</a></p>
+          <br>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Edit Profile</button>
+      </div>
+        </header>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #f="ngForm">
+              <input type="text" class="form-control" name="flName" #flName="ngModel" [(ngModel)]="dataProfile.flName" required>
+              <div class="alert alert-danger" *ngIf="flName.invalid && flName.touched">Name is required</div>
+              <br>
+              <input type="text" class="form-control" name="age" #age="ngModel" [(ngModel)]="dataProfile.age" required>
+              <div class="alert alert-danger" *ngIf="age.invalid && age.touched">Age is required</div>
+              <br>
+              <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="dataProfile.address" required>
+              <div class="alert alert-danger" *ngIf="address.invalid && address.touched">Address is required</div>
+              <br>
+              <input type="text" class="form-control" name="image" #image="ngModel" [(ngModel)]="dataProfile.image" required>
+              <div class="alert alert-danger" *ngIf="image.invalid && image.touched">Image is required</div>
+              <br>
+              <div class="alert alert-success" *ngIf="succesUpdate">{{succesUpdate}}</div>
+              <br>
+              <button class="btn btn-success" (click)="update()">Update</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>

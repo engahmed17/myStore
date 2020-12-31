@@ -1,0 +1,54 @@
+<div class="uk-position-center uk-overlay uk-overlay-default">
+    <form #f="ngForm" (ngSubmit)="register(f)">
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" type="text" name="flName" #flName="ngModel" ngModel required placeholder="Enter Name">
+                <p class="alert alert-danger" *ngIf="flName.invalid.required && flName.touched">Name is required</p>
+            </div>
+        </div>
+
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                <input class="uk-input" type="text" name="email" #email="ngModel" ngModel required email placeholder="Enter Email">
+                <p class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email Is Required</p>
+                <p class="alert alert-danger" *ngIf="email.touched && email.errors?.email">Not email</p>
+            </div>
+        </div>
+    
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input class="uk-input" type="password" name="password" #password="ngModel" ngModel required minlength="6" placeholder="Enter Password">
+                <p class="alert alert-danger" *ngIf="password.touched && password.errors?.required">Password Is Required</p>
+                <p class="alert alert-danger" *ngIf="password.touched && password.errors?.minlength">Should Be 6+ Charachters</p>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input class="uk-input" type="password" name="confirmPassword" #confirmPassword="ngModel" ngModel required placeholder="Confirm Password">
+                <p class="alert alert-danger" *ngIf="confirmPassword.invalid && confirmPassword.touched">confirmPassword Is Required</p>
+                <p class="alert alert-danger" *ngIf="confirmPassword.value !== password.value && confirmPassword.touched">Password Not Match</p>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: happy"></span>
+                <input class="uk-input" type="text" name="age" #age="ngModel" ngModel required placeholder="Enter Age">
+                <p class="alert alert-danger" *ngIf="age.invalid.required && age.touched">Age is required</p>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: world"></span>
+                <input class="uk-input" type="text" name="address" #address="ngModel" ngModel required placeholder="Enter Address">
+                <p class="alert alert-danger" *ngIf="address.invalid.required && address.touched">Address is required</p>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="f.invalid || confirmPassword.value !== password.value">Register</button>
+        <br>
+        <span>Have Account</span>&nbsp;<a routerLink="/login">Login</a>
+    </form>
+</div>

@@ -1,0 +1,24 @@
+<div class="uk-position-center uk-overlay uk-overlay-default">
+    <form #f="ngForm" (ngSubmit)="login(f)">
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                <input class="uk-input" type="email" #email="ngModel" ngModel name="email" placeholder="Enter Email" required email>
+                <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email Is Required</div>
+                <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">Your input doesn't match email format</div>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-inline">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                <input class="uk-input" type="password" #password="ngModel" ngModel name="password" placeholder="Enter Password" required minlength="6">
+                <div class="alert alert-danger" *ngIf="password.touched && password.errors?.required">Password Is Required</div>
+                <div class="alert alert-danger" *ngIf="password.touched && password.errors?.minlength">Should Be 6+ Charachters</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]=f.invalid>Login</button>
+        <div class="alert alert-danger" *ngIf="messageError">{{messageError}}</div>
+        <br>
+        <span>New User</span>&nbsp;<a routerLink="/register">Register</a>
+    </form>
+</div>

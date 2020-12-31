@@ -1,0 +1,58 @@
+<div class="container">
+    <br>
+    <div class="body">
+      <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#exampleModal">
+        Add Product
+      </button>
+      <div class="row">
+          <div class="col" *ngFor="let item of dataArray">
+            <div class="card" style="width: 18rem;" *ngIf="uId===item.uid">
+                <img [src]="item.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-title">Name : {{item.title}}</p>
+                  <p class="card-text">Description : {{item.description}}</p>
+                  <p class="card-text">Price : {{item.price}} $</p>
+                  <button class="btn btn-danger" (click)="delete(item.id)">Delete</button>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #f="ngForm" (ngSubmit)="addProduct(f)">
+            <div>
+              <div>
+                <input type="text" class="form-control" placeholder="Title" name="title" #title="ngModel" ngModel required>
+                <div class="alert alert-danger" *ngIf="title.invalid && title.touched">Title Is Required</div>
+              </div>
+              <div>
+                <textarea class="form-control" cols="5" rows="5" placeholder="Description" name="description" #description="ngModel" ngModel required></textarea>
+                <div class="alert alert-danger" *ngIf="description.invalid && description.touched">Description Is Required</div>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Price" name="price" #price="ngModel" ngModel required>
+                <div class="alert alert-danger" *ngIf="price.invalid && price.touched">Price Is Required</div>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Image Url" name="image" #image="ngModel" ngModel required>
+                <div class="alert alert-danger" *ngIf="image.invalid && image.touched">Image Url Is Required</div>
+              </div>
+              <br>
+            </div>
+            <div class="alert alert-success" *ngIf="successMessage">{{successMessage}}</div>
+            <button class="btn btn-success" [disabled]="f.invalid">Add Product</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
